@@ -5,6 +5,8 @@
 
 package org.lineageos.canvas.ui.screens
 
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -28,12 +30,14 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.dp
+import androidx.navigation3.ui.LocalNavAnimatedContentScope
 import org.lineageos.canvas.ext.drawCropOverlay
 import org.lineageos.canvas.models.Action
 import org.lineageos.canvas.models.Handle
+import org.lineageos.canvas.ui.LocalSharedTransitionScope
+import org.lineageos.canvas.ui.composables.CanvasBottomBar
 import org.lineageos.canvas.ui.composables.CanvasImage
 import org.lineageos.canvas.ui.composables.ImageInformation
-import org.lineageos.canvas.ui.composables.CanvasBottomBar
 import org.lineageos.canvas.ui.theme.CropOverlayStyle
 import org.lineageos.canvas.ui.theme.defaultCropOverlayStyle
 
@@ -105,8 +109,17 @@ private fun CropOverlay(
     }
     val minimumCropSizePx = with(LocalDensity.current) { 100.dp.toPx() }
 
+    val transitionScope = LocalSharedTransitionScope.current
+    val animatedVisibilityScope = LocalNavAnimatedContentScope.current
+    val overlayModifier = with(transitionScope) {
+        modifier.renderInSharedTransitionScopeOverlay(zIndexInOverlay = 1f)
+    }
+    val animatedOverlayModifier = with(animatedVisibilityScope) {
+        overlayModifier.animateEnterExit(enter = fadeIn(), exit = fadeOut())
+    }
+
     Canvas(
-        modifier = modifier
+        modifier = animatedOverlayModifier
             .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
             .pointerInput(imageBounds) {
                 detectDragGestures(
