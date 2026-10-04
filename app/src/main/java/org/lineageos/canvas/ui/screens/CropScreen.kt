@@ -105,7 +105,7 @@ private fun CropOverlay(
     val currentCropRect by rememberUpdatedState(cropRect)
 
     val handleHitRadiusPx = with(LocalDensity.current) {
-        maxOf(style.handleRadius + 8.dp, 24.dp).toPx()
+        maxOf(style.handleRadius + 8.dp, 40.dp).toPx()
     }
     val minimumCropSizePx = with(LocalDensity.current) { 100.dp.toPx() }
 
