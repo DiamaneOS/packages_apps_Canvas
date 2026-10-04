@@ -4,32 +4,40 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <!-- App -->
     <string name="app_name">Canvas</string>
 
+    <!-- Navigation and actions -->
     <string name="close">Close</string>
-    <string name="save">Save</string>
-    <string name="save_as">Save as…</string>
+    <string name="back">Back</string>
+    <string name="cancel_action">Cancel action</string>
+    <string name="confirm_action">Confirm action</string>
     <string name="undo">Undo</string>
     <string name="redo">Redo</string>
+    <string name="save">Save</string>
+    <string name="save_as">Save as…</string>
     <string name="share">Share</string>
     <string name="more">More…</string>
-    <string name="back">Back</string>
+
+    <!-- Edit categories -->
     <string name="category_transformation">Transform image</string>
     <string name="category_drawing">Drawing tools</string>
     <string name="category_adjustments">Image adjustments</string>
-    <string name="cancel_action">Cancel action</string>
-    <string name="confirm_action">Confirm action</string>
 
     <!-- Edit modes -->
     <string name="edit_mode_crop">Crop</string>
     <string name="edit_mode_rotation">Rotation</string>
-    <string name="rotate_counterclockwise">Rotate counterclockwise</string>
-    <string name="rotate_clockwise">Rotate clockwise</string>
     <string name="edit_mode_marker">Marker</string>
     <string name="edit_mode_highlighter">Highlighter</string>
     <string name="edit_mode_text">Text</string>
     <string name="edit_mode_brightness">Brightness</string>
     <string name="edit_mode_contrast">Contrast</string>
+
+    <!-- Rotation -->
+    <string name="rotate_counterclockwise">Rotate counterclockwise</string>
+    <string name="rotate_clockwise">Rotate clockwise</string>
+
+    <!-- Adjustments -->
     <string name="adjustment_percent">%1$.0f%%</string>
 
     <!-- Drawing colors -->
@@ -42,7 +50,7 @@
     <string name="color_cyan">Cyan</string>
     <string name="color_magenta">Magenta</string>
 
-
+    <!-- Text editor -->
     <string name="enter_text">Enter text…</string>
 
     <!-- Text decorations -->
