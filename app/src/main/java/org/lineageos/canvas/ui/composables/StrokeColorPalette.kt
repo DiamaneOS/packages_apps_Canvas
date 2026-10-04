@@ -71,19 +71,21 @@ fun StrokeColorPalette(
                     label = "stroke color size",
                 )
 
-                IconButton(
-                    onClick = { onColorSelected(option.color) },
-                    modifier = Modifier.semantics {
-                        contentDescription = description
-                        selected = isSelected
-                        role = Role.RadioButton
-                    },
-                ) {
-                    Spacer(
-                        modifier = Modifier
-                            .size(size.value)
-                            .background(option.color, CircleShape)
-                    )
+                ToolbarTooltip(description) {
+                    IconButton(
+                        onClick = { onColorSelected(option.color) },
+                        modifier = Modifier.semantics {
+                            contentDescription = description
+                            selected = isSelected
+                            role = Role.RadioButton
+                        },
+                    ) {
+                        Spacer(
+                            modifier = Modifier
+                                .size(size.value)
+                                .background(option.color, CircleShape)
+                        )
+                    }
                 }
             }
         }

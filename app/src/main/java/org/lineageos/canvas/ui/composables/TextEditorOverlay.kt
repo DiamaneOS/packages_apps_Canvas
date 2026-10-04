@@ -47,6 +47,8 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -96,7 +98,7 @@ fun TextEditorOverlay(
             strikethrough -> TextDecoration.LineThrough
             else -> TextDecoration.None
         },
-        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center,
     )
 
     Column(
@@ -111,31 +113,36 @@ fun TextEditorOverlay(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(onClick = onDismiss) {
-                Icon(
-                    Icons.Default.Close,
-                    contentDescription = null,
-                )
+            val cancelDescription = stringResource(R.string.cancel_action)
+            ToolbarTooltip(cancelDescription) {
+                IconButton(onClick = onDismiss) {
+                    Icon(
+                        Icons.Default.Close,
+                        contentDescription = cancelDescription,
+                    )
+                }
             }
 
-            IconButton(
-                onClick = {
-                    val text = textFieldState.text.trim()
-                    when (text.isNotBlank()) {
-                        true -> onConfirm(
-                            text.toString(),
-                            textStyle,
-                        )
+            val confirmDescription = stringResource(R.string.confirm_action)
+            ToolbarTooltip(confirmDescription) {
+                IconButton(
+                    onClick = {
+                        val text = textFieldState.text.trim()
+                        when (text.isNotBlank()) {
+                            true -> onConfirm(
+                                text.toString(),
+                                textStyle,
+                            )
 
-                        false -> {}
-                    }
-                },
-                enabled = textFieldState.text.isNotBlank()
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Check,
-                    contentDescription = null,
-                )
+                            false -> {}
+                        }
+                    }, enabled = textFieldState.text.isNotBlank()
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Check,
+                        contentDescription = confirmDescription,
+                    )
+                }
             }
         }
 
@@ -238,14 +245,17 @@ private fun TextPropertyButton(
     @StringRes contentDescription: Int,
     onCheckedChange: (Boolean) -> Unit,
 ) {
-    FilledIconToggleButton(
-        checked = checked,
-        onCheckedChange = onCheckedChange,
-    ) {
-        Icon(
-            imageVector = imageVector,
-            contentDescription = stringResource(contentDescription),
-        )
+    val description = stringResource(contentDescription)
+    ToolbarTooltip(description) {
+        FilledIconToggleButton(
+            checked = checked,
+            onCheckedChange = onCheckedChange,
+        ) {
+            Icon(
+                imageVector = imageVector,
+                contentDescription = description,
+            )
+        }
     }
 }
 
@@ -257,23 +267,27 @@ private fun TextColorButton(
     onClick: (color: Color) -> Unit,
 ) {
     val checked = color == currentColor
+    val description = stringResource(contentDescription)
 
-    OutlinedIconButton(
-        onClick = { onClick(color) },
-        colors = IconButtonDefaults.filledIconButtonColors(
-            containerColor = color.copy(
-                alpha = when (checked) {
-                    true -> 0.5f
-                    false -> 1f
-                }
-            ),
-        )
-    ) {
-        if (checked) {
-            Icon(
-                imageVector = Icons.Default.Check,
-                contentDescription = stringResource(contentDescription),
+    ToolbarTooltip(description) {
+        OutlinedIconButton(
+            onClick = { onClick(color) },
+            modifier = Modifier.semantics { this.contentDescription = description },
+            colors = IconButtonDefaults.filledIconButtonColors(
+                containerColor = color.copy(
+                    alpha = when (checked) {
+                        true -> 0.5f
+                        false -> 1f
+                    }
+                ),
             )
+        ) {
+            if (checked) {
+                Icon(
+                    imageVector = Icons.Default.Check,
+                    contentDescription = null,
+                )
+            }
         }
     }
 }

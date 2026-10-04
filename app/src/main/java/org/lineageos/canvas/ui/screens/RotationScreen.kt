@@ -36,6 +36,7 @@ import org.lineageos.canvas.models.Action
 import org.lineageos.canvas.models.RotationStep
 import org.lineageos.canvas.ui.composables.CanvasBottomBar
 import org.lineageos.canvas.ui.composables.CanvasImage
+import org.lineageos.canvas.ui.composables.ToolbarTooltip
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.cos
@@ -120,18 +121,24 @@ private fun RotationBottomBarContent(
     onRotateClockwise: () -> Unit,
 ) {
     HorizontalFloatingToolbar(expanded = true) {
-        IconButton(onClick = onRotateCounterclockwise) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.RotateLeft,
-                contentDescription = stringResource(R.string.rotate_counterclockwise),
-            )
+        val counterclockwiseDescription = stringResource(R.string.rotate_counterclockwise)
+        ToolbarTooltip(counterclockwiseDescription) {
+            IconButton(onClick = onRotateCounterclockwise) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.RotateLeft,
+                    contentDescription = counterclockwiseDescription,
+                )
+            }
         }
 
-        IconButton(onClick = onRotateClockwise) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.RotateRight,
-                contentDescription = stringResource(R.string.rotate_clockwise),
-            )
+        val clockwiseDescription = stringResource(R.string.rotate_clockwise)
+        ToolbarTooltip(clockwiseDescription) {
+            IconButton(onClick = onRotateClockwise) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.RotateRight,
+                    contentDescription = clockwiseDescription,
+                )
+            }
         }
     }
 }

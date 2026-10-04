@@ -23,16 +23,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.SplitButtonDefaults
 import androidx.compose.material3.SplitButtonLayout
 import androidx.compose.material3.Text
 import androidx.compose.material3.TooltipAnchorPosition
-import androidx.compose.material3.TooltipBox
-import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -82,13 +78,14 @@ fun CanvasTopAppBar(
         modifier = modifier,
         navigationIcon = {
             if (canClose) {
-                IconButton(
-                    onClick = onClose
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = null,
-                    )
+                val description = stringResource(R.string.close)
+                ToolbarTooltip(description, TooltipAnchorPosition.Below) {
+                    IconButton(onClick = onClose) {
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = description,
+                        )
+                    }
                 }
             }
         },
@@ -105,37 +102,32 @@ fun CanvasTopAppBar(
                                     false -> stringResource(R.string.share)
                                 }
 
-                                SplitButtonDefaults.LeadingButton(
-                                    onClick = when (isWritable) {
-                                        true -> onSave
-                                        false -> onShare
-                                    },
-                                ) {
-                                    Icon(
-                                        imageVector = when (isWritable) {
-                                            true -> Icons.Default.Save
-                                            false -> Icons.Default.Share
+                                ToolbarTooltip(description, TooltipAnchorPosition.Below) {
+                                    SplitButtonDefaults.LeadingButton(
+                                        onClick = when (isWritable) {
+                                            true -> onSave
+                                            false -> onShare
                                         },
-                                        modifier = Modifier.size(SplitButtonDefaults.LeadingIconSize),
-                                        contentDescription = description,
-                                    )
+                                    ) {
+                                        Icon(
+                                            imageVector = when (isWritable) {
+                                                true -> Icons.Default.Save
+                                                false -> Icons.Default.Share
+                                            },
+                                            modifier = Modifier.size(SplitButtonDefaults.LeadingIconSize),
+                                            contentDescription = description,
+                                        )
 
-                                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                                        Spacer(Modifier.size(ButtonDefaults.IconSpacing))
 
-                                    Text(description)
+                                        Text(description)
+                                    }
                                 }
                             },
                             trailingButton = {
                                 val description = stringResource(R.string.more)
 
-                                TooltipBox(
-                                    positionProvider =
-                                        TooltipDefaults.rememberTooltipPositionProvider(
-                                            TooltipAnchorPosition.Above
-                                        ),
-                                    tooltip = { PlainTooltip { Text(description) } },
-                                    state = rememberTooltipState(),
-                                ) {
+                                ToolbarTooltip(description, TooltipAnchorPosition.Below) {
                                     SplitButtonDefaults.TrailingButton(
                                         checked = checked,
                                         onCheckedChange = { checked = it },

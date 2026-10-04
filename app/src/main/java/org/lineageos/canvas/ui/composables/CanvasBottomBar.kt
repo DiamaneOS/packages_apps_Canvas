@@ -118,31 +118,37 @@ fun CanvasBottomBar(
 
 @Composable
 private fun CancelActionFloatingButton(onClick: () -> Unit) {
-    FloatingActionButton(
-        onClick = onClick,
-        shape = CircleShape,
-        containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
-        contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-    ) {
-        Icon(
-            imageVector = Icons.Filled.Close,
-            contentDescription = stringResource(R.string.cancel_action),
-        )
+    val description = stringResource(R.string.cancel_action)
+    ToolbarTooltip(description) {
+        FloatingActionButton(
+            onClick = onClick,
+            shape = CircleShape,
+            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+            contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Close,
+                contentDescription = description,
+            )
+        }
     }
 }
 
 @Composable
 private fun ConfirmActionFloatingButton(onClick: () -> Unit) {
-    FloatingActionButton(
-        onClick = onClick,
-        shape = CircleShape,
-        containerColor = MaterialTheme.colorScheme.primaryContainer,
-        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-    ) {
-        Icon(
-            imageVector = Icons.Filled.Check,
-            contentDescription = stringResource(R.string.confirm_action),
-        )
+    val description = stringResource(R.string.confirm_action)
+    ToolbarTooltip(description) {
+        FloatingActionButton(
+            onClick = onClick,
+            shape = CircleShape,
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Check,
+                contentDescription = description,
+            )
+        }
     }
 }
 
@@ -204,14 +210,17 @@ private fun CategoryToolbar(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
     ) {
-        FloatingActionButton(
-            onClick = onBack,
-            shape = CircleShape,
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Close,
-                contentDescription = stringResource(R.string.back),
-            )
+        val backDescription = stringResource(R.string.back)
+        ToolbarTooltip(backDescription) {
+            FloatingActionButton(
+                onClick = onBack,
+                shape = CircleShape,
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = backDescription,
+                )
+            }
         }
 
         HorizontalFloatingToolbar(
@@ -241,15 +250,18 @@ private fun ActionButton(
     @StringRes contentDescription: Int,
     modifier: Modifier = Modifier,
 ) {
-    IconButton(
-        onClick = onDo,
-        enabled = canDo,
-        modifier = modifier,
-    ) {
-        Icon(
-            imageVector = imageVector,
-            contentDescription = stringResource(contentDescription),
-        )
+    val description = stringResource(contentDescription)
+    ToolbarTooltip(description) {
+        IconButton(
+            onClick = onDo,
+            enabled = canDo,
+            modifier = modifier,
+        ) {
+            Icon(
+                imageVector = imageVector,
+                contentDescription = description,
+            )
+        }
     }
 }
 
@@ -262,18 +274,27 @@ private fun CategoryButton(
     onCategorySelected: (EditMode.Category) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    IconButton(
-        onClick = { onCategorySelected(category) },
-        modifier = modifier,
-    ) {
-        Icon(
-            imageVector = when (category) {
-                EditMode.Category.TRANSFORMATION -> Icons.Filled.Transform
-                EditMode.Category.DRAWING -> Icons.Filled.Draw
-                EditMode.Category.ADJUSTMENTS -> Icons.Filled.Exposure
-            },
-            contentDescription = category.name,
-        )
+    val description = stringResource(
+        when (category) {
+            EditMode.Category.TRANSFORMATION -> R.string.category_transformation
+            EditMode.Category.DRAWING -> R.string.category_drawing
+            EditMode.Category.ADJUSTMENTS -> R.string.category_adjustments
+        }
+    )
+    ToolbarTooltip(description) {
+        IconButton(
+            onClick = { onCategorySelected(category) },
+            modifier = modifier,
+        ) {
+            Icon(
+                imageVector = when (category) {
+                    EditMode.Category.TRANSFORMATION -> Icons.Filled.Transform
+                    EditMode.Category.DRAWING -> Icons.Filled.Draw
+                    EditMode.Category.ADJUSTMENTS -> Icons.Filled.Exposure
+                },
+                contentDescription = description,
+            )
+        }
     }
 }
 
@@ -286,29 +307,34 @@ fun EditModeButton(
     onEditModeSelected: (EditMode) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    IconButton(
-        onClick = { onEditModeSelected(editMode) },
-        modifier = modifier,
-    ) {
-        Icon(
-            imageVector = when (editMode) {
-                EditMode.CROP -> Icons.Filled.Crop
-                EditMode.ROTATION -> Icons.Filled.CropRotate
-                EditMode.MARKER -> ImageVector.vectorResource(R.drawable.ic_ink_pen)
-                EditMode.HIGHLIGHTER -> ImageVector.vectorResource(R.drawable.ic_ink_highlighter)
-                EditMode.TEXT -> Icons.Filled.TextFields
-                EditMode.BRIGHTNESS -> Icons.Filled.BrightnessMedium
-                EditMode.CONTRAST -> Icons.Filled.Contrast
-            },
-            contentDescription = when (editMode) {
-                EditMode.CROP -> R.string.edit_mode_crop
-                EditMode.ROTATION -> R.string.edit_mode_rotation
-                EditMode.MARKER -> R.string.edit_mode_marker
-                EditMode.HIGHLIGHTER -> R.string.edit_mode_highlighter
-                EditMode.TEXT -> R.string.edit_mode_text
-                EditMode.BRIGHTNESS -> R.string.edit_mode_brightness
-                EditMode.CONTRAST -> R.string.edit_mode_contrast
-            }.let { stringResource(it) },
-        )
+    val description = stringResource(
+        when (editMode) {
+            EditMode.CROP -> R.string.edit_mode_crop
+            EditMode.ROTATION -> R.string.edit_mode_rotation
+            EditMode.MARKER -> R.string.edit_mode_marker
+            EditMode.HIGHLIGHTER -> R.string.edit_mode_highlighter
+            EditMode.TEXT -> R.string.edit_mode_text
+            EditMode.BRIGHTNESS -> R.string.edit_mode_brightness
+            EditMode.CONTRAST -> R.string.edit_mode_contrast
+        }
+    )
+    ToolbarTooltip(description) {
+        IconButton(
+            onClick = { onEditModeSelected(editMode) },
+            modifier = modifier,
+        ) {
+            Icon(
+                imageVector = when (editMode) {
+                    EditMode.CROP -> Icons.Filled.Crop
+                    EditMode.ROTATION -> Icons.Filled.CropRotate
+                    EditMode.MARKER -> ImageVector.vectorResource(R.drawable.ic_ink_pen)
+                    EditMode.HIGHLIGHTER -> ImageVector.vectorResource(R.drawable.ic_ink_highlighter)
+                    EditMode.TEXT -> Icons.Filled.TextFields
+                    EditMode.BRIGHTNESS -> Icons.Filled.BrightnessMedium
+                    EditMode.CONTRAST -> Icons.Filled.Contrast
+                },
+                contentDescription = description,
+            )
+        }
     }
 }
