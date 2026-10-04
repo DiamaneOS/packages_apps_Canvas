@@ -32,12 +32,15 @@ data class ImageFormat(
             Bitmap.CompressFormat.WEBP_LOSSLESS,
         )
 
-        fun fromMimeType(mimeType: String) = when (mimeType) {
+        fun fromMimeTypeOrNull(mimeType: String?) = when (mimeType) {
             JPEG.mimeType -> JPEG
             PNG.mimeType -> PNG
             WEBP.mimeType -> WEBP
-            else -> error("Unsupported image type")
+            else -> null
         }
+
+        fun fromMimeType(mimeType: String) =
+            fromMimeTypeOrNull(mimeType) ?: error("Unsupported image type: $mimeType")
     }
 }
 

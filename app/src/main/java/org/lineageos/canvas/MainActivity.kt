@@ -37,14 +37,7 @@ class MainActivity : ComponentActivity() {
             return@Consumer
         }
 
-        val mimeType = contentResolver.getType(uri)
-        val supportedMimeTypes = listOf(
-            ImageFormat.JPEG.mimeType,
-            ImageFormat.PNG.mimeType,
-            ImageFormat.WEBP.mimeType,
-        )
-
-        if (supportedMimeTypes.none { it == mimeType }) {
+        if (ImageFormat.fromMimeTypeOrNull(contentResolver.getType(uri)) == null) {
             finish()
             return@Consumer
         }
