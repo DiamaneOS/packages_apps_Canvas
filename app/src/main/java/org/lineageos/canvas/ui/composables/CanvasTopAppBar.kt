@@ -43,6 +43,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import org.lineageos.canvas.R
 import org.lineageos.canvas.models.EditMode
+import org.lineageos.canvas.ui.ScreenshotActions
 import org.lineageos.canvas.ui.navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
@@ -56,6 +57,8 @@ fun CanvasTopAppBar(
     onSaveAs: () -> Unit,
     onShare: () -> Unit,
     modifier: Modifier = Modifier,
+    screenshotActions: ScreenshotActions? = null,
+    hasEdits: Boolean = false,
 ) {
     TopAppBar(
         title = {
@@ -91,7 +94,14 @@ fun CanvasTopAppBar(
             }
         },
         actions = {
-            when (currentScreen) {
+            if (currentScreen is Screen.Home && screenshotActions != null) {
+                ScreenshotDoneButton(
+                    screenshotActions = screenshotActions,
+                    hasEdits = hasEdits,
+                    onShare = onShare,
+                    onSaveAs = onSaveAs,
+                )
+            } else when (currentScreen) {
                 is Screen.Home -> {
                     Box {
                         var checked by remember { mutableStateOf(false) }
