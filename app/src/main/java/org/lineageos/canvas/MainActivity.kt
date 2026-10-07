@@ -9,10 +9,12 @@ import android.content.ClipData
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.LaunchedEffect
@@ -21,7 +23,10 @@ import androidx.compose.runtime.getValue
 import androidx.core.util.Consumer
 import org.lineageos.canvas.models.EditStatus
 import org.lineageos.canvas.models.ImageFormat
+import org.lineageos.canvas.screenshot.ScreenshotFiles
+import org.lineageos.canvas.screenshot.ScreenshotRules
 import org.lineageos.canvas.ui.CanvasApp
+import org.lineageos.canvas.ui.ScreenshotActions
 import org.lineageos.canvas.ui.theme.CanvasTheme
 import org.lineageos.canvas.viewmodels.EditViewModel
 import org.lineageos.canvas.viewmodels.ResultOpsViewModel
@@ -45,7 +50,7 @@ class MainActivity : ComponentActivity() {
         val isWritable = (intent.flags and Intent.FLAG_GRANT_WRITE_URI_PERMISSION) != 0
 
         editViewModel.setUri(uri, isWritable)
-        resultOpsViewModel.setUri(uri)
+        resultOpsViewModel.setUri(uri, ScreenshotFiles.isScreenshotRequest(intent, uri))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +64,13 @@ class MainActivity : ComponentActivity() {
             val saveStatus by resultOpsViewModel.saveStatus.collectAsState()
             val image by resultOpsViewModel.image.collectAsState()
             val finalBitmap by editViewModel.finalResultBitmap.collectAsState()
+            val isScreenshot by resultOpsViewModel.isScreenshot.collectAsState()
+
+            val deleteRequestLauncher = rememberLauncherForActivityResult(
+                contract = ActivityResultContracts.StartIntentSenderForResult(),
+            ) { result ->
+                resultOpsViewModel.onDeleteConfirmationResult(result.resultCode == RESULT_OK)
+            }
 
             LaunchedEffect(saveStatus) {
                 when (val status = saveStatus) {
@@ -81,6 +93,26 @@ class MainActivity : ComponentActivity() {
                         startActivity(Intent.createChooser(shareIntent, getString(R.string.share)))
                     }
 
+                    is EditStatus.Deleted -> {
+                        setResult(RESULT_OK)
+                        finish()
+                    }
+
+                    is EditStatus.DeleteNeedsConfirmation -> {
+                        resultOpsViewModel.onDeleteConfirmationShown()
+                        deleteRequestLauncher.launch(
+                            IntentSenderRequest.Builder(status.intentSender).build()
+                        )
+                    }
+
+                    is EditStatus.DeleteFailed -> Toast.makeText(
+                        this@MainActivity, R.string.screenshot_delete_failed, Toast.LENGTH_SHORT
+                    ).show()
+
+                    is EditStatus.CopyFailed -> Toast.makeText(
+                        this@MainActivity, R.string.screenshot_copy_failed, Toast.LENGTH_SHORT
+                    ).show()
+
                     else -> {}
                 }
             }
@@ -102,13 +134,38 @@ class MainActivity : ComponentActivity() {
                 contract = ActivityResultContracts.CreateDocument(ImageFormat.WEBP.mimeType),
             ) { uri -> onDocumentCreated(uri, ImageFormat.WEBP) }
 
+            val onClose = {
+                setResult(RESULT_CANCELED, null)
+                finish()
+            }
+
+            // Screenshot from SystemUI's Edit: Done replaces Save
+            val screenshotActions = when (isScreenshot) {
+                true -> ScreenshotActions(
+                    onSave = { hasEdits ->
+                        when (ScreenshotRules.saveWrites(hasEdits)) {
+                            true -> finalBitmap?.let { resultOpsViewModel.saveImage(it) }
+                            false -> onClose()
+                        }
+                    },
+                    onCopyAndDelete = { hasEdits ->
+                        resultOpsViewModel.copyAndDeleteScreenshot(
+                            bitmap = finalBitmap.takeIf { hasEdits },
+                            label = getString(R.string.screenshot_clip_label),
+                        )
+                    },
+                    onDelete = resultOpsViewModel::deleteScreenshot,
+                    onDiscard = onClose,
+                )
+
+                false -> null
+            }
+
             CanvasTheme {
                 CanvasApp(
                     editViewModel = editViewModel,
-                    onClose = {
-                        setResult(RESULT_CANCELED, null)
-                        finish()
-                    },
+                    onClose = onClose,
+                    screenshotActions = screenshotActions,
                     onSave = {
                         finalBitmap?.let {
                             resultOpsViewModel.saveImage(it)

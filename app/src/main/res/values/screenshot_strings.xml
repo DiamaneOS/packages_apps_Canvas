@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The DiamaneOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Screenshots opened by SystemUI's Edit (DiamaneOS). English only for now. -->
+<resources>
+    <string name="screenshot_done">Done</string>
+    <string name="screenshot_copy_and_delete">Copy and delete</string>
+    <string name="screenshot_delete">Delete</string>
+    <string name="screenshot_discard">Discard</string>
+    <string name="screenshot_keep_edits_title">Keep your edits?</string>
+    <string name="screenshot_keep_edits_message">Save writes them into the screenshot. Discard keeps the screenshot as it was.</string>
+    <string name="screenshot_delete_failed">Couldn\'t delete the screenshot</string>
+    <string name="screenshot_copy_failed">Couldn\'t copy the screenshot; it was not deleted</string>
+    <string name="screenshot_clip_label">Screenshot</string>
+</resources>
