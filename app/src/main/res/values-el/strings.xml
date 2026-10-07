@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="close">Κλείσιμο</string>
+    <string name="back">Πίσω</string>
+    <string name="cancel_action">Ακύρωση ενέργειας</string>
+    <string name="confirm_action">Επιβεβαίωση ενέργειας</string>
+    <string name="undo">Αναίρεση</string>
+    <string name="redo">Επανάληψη</string>
+    <string name="save">Αποθήκευση</string>
+    <string name="save_as">Αποθήκευση ως…</string>
+    <string name="share">Κοινή χρήση</string>
+    <string name="more">Περισσότερα…</string>
+    <string name="category_transformation">Μετασχηματισμός εικόνας</string>
+    <string name="category_drawing">Εργαλεία σχεδίασης</string>
+    <string name="category_adjustments">Προσαρμογές εικόνας</string>
+    <string name="edit_mode_crop">Περικοπή</string>
+    <string name="edit_mode_rotation">Περιστροφή</string>
+    <string name="edit_mode_marker">Στυλό</string>
+    <string name="edit_mode_highlighter">Μαρκαδόρος</string>
+    <string name="edit_mode_text">Κείμενο</string>
+    <string name="edit_mode_brightness">Φωτεινότητα</string>
+    <string name="edit_mode_contrast">Αντίθεση</string>
+    <string name="edit_mode_filters">Φίλτρα</string>
+    <string name="rotate_counterclockwise">Περιστροφή προς τα αριστερά</string>
+    <string name="rotate_clockwise">Περιστροφή προς τα δεξιά</string>
+    <string name="filter_none">Πρωτότυπο</string>
+    <string name="filter_grey">Γκρι</string>
+    <string name="filter_sepia">Σέπια</string>
+    <string name="filter_select_hint">Επιλέξτε ένα φίλτρο για προεπισκόπηση</string>
+    <string name="filter_tap_again_to_adjust">Πατήστε ξανά το επιλεγμένο φίλτρο για προσαρμογή</string>
+    <string name="color_white">Λευκό</string>
+    <string name="color_black">Μαύρο</string>
+    <string name="color_red">Κόκκινο</string>
+    <string name="color_green">Πράσινο</string>
+    <string name="color_blue">Μπλε</string>
+    <string name="color_yellow">Κίτρινο</string>
+    <string name="color_cyan">Κυανό</string>
+    <string name="color_magenta">Ματζέντα</string>
+    <string name="enter_text">Εισάγετε κείμενο…</string>
+    <string name="text_decoration_bold">Έντονη γραφή</string>
+    <string name="text_decoration_italic">Πλάγια γραφή</string>
+    <string name="text_decoration_underlined">Υπογράμμιση</string>
+    <string name="text_decoration_strikethrough">Διακριτή διαγραφή</string>
+    <string name="text_alignment_left">Αριστερά</string>
+    <string name="text_alignment_center">Κέντρο</string>
+    <string name="text_alignment_right">Δεξιά</string>
+    <string name="text_color_white">Λευκό</string>
+    <string name="text_color_black">Μαύρο</string>
+    <string name="text_color_red">Κόκκινο</string>
+    <string name="text_color_green">Πράσινο</string>
+    <string name="text_color_blue">Μπλε</string>
+    <string name="text_color_yellow">Κίτρινο</string>
+    <string name="text_color_cyan">Κυανό</string>
+    <string name="text_color_magenta">Ματζέντα</string>
+</resources>

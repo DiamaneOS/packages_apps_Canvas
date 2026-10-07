@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="close">閉じる</string>
+    <string name="back">戻る</string>
+    <string name="cancel_action">操作をキャンセル</string>
+    <string name="confirm_action">操作を確認</string>
+    <string name="undo">元に戻す</string>
+    <string name="redo">やり直し</string>
+    <string name="save">保存</string>
+    <string name="save_as">名前を付けて保存</string>
+    <string name="share">共有</string>
+    <string name="more">もっと見る</string>
+    <string name="category_transformation">画像を変換</string>
+    <string name="category_drawing">描画ツール</string>
+    <string name="category_adjustments">画像調整</string>
+    <string name="edit_mode_crop">切り取り</string>
+    <string name="edit_mode_rotation">回転</string>
+    <string name="edit_mode_marker">マーカー</string>
+    <string name="edit_mode_highlighter">ハイライト</string>
+    <string name="edit_mode_text">テキスト</string>
+    <string name="edit_mode_brightness">明るさ</string>
+    <string name="edit_mode_contrast">コントラスト</string>
+    <string name="edit_mode_filters">フィルター</string>
+    <string name="rotate_counterclockwise">反時計回りに回転</string>
+    <string name="rotate_clockwise">時計回りに回転</string>
+    <string name="filter_none">オリジナル</string>
+    <string name="filter_grey">グレー</string>
+    <string name="filter_sepia">セピア</string>
+    <string name="filter_select_hint">プレビューするフィルターを選択</string>
+    <string name="filter_tap_again_to_adjust">選択したフィルターをもう一度タップすると調整できます</string>
+    <string name="color_white">ホワイト</string>
+    <string name="color_black">ブラック</string>
+    <string name="color_red">レッド</string>
+    <string name="color_green">グリーン</string>
+    <string name="color_blue">ブルー</string>
+    <string name="color_yellow">イエロー</string>
+    <string name="color_cyan">シアン</string>
+    <string name="color_magenta">マゼンタ</string>
+    <string name="enter_text">テキストを入力…</string>
+    <string name="text_decoration_bold">太字</string>
+    <string name="text_decoration_italic">斜体</string>
+    <string name="text_decoration_underlined">下線</string>
+    <string name="text_decoration_strikethrough">取り消し線</string>
+    <string name="text_alignment_left">左</string>
+    <string name="text_alignment_center">中央</string>
+    <string name="text_alignment_right">右</string>
+    <string name="text_color_white">ホワイト</string>
+    <string name="text_color_black">ブラック</string>
+    <string name="text_color_red">レッド</string>
+    <string name="text_color_green">グリーン</string>
+    <string name="text_color_blue">ブルー</string>
+    <string name="text_color_yellow">イエロー</string>
+    <string name="text_color_cyan">シアン</string>
+    <string name="text_color_magenta">マゼンタ</string>
+</resources>

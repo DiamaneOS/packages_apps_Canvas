@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="close">Dún</string>
+    <string name="back">Ar ais</string>
+    <string name="cancel_action">Cealaigh an gníomh</string>
+    <string name="confirm_action">Deimhnigh an gníomh</string>
+    <string name="undo">Cealaigh</string>
+    <string name="redo">Athdhéan</string>
+    <string name="save">Sábháil</string>
+    <string name="save_as">Sábháil mar…</string>
+    <string name="share">Comhroinn</string>
+    <string name="more">Tuilleadh…</string>
+    <string name="category_transformation">Claochlaigh íomhá</string>
+    <string name="category_drawing">Uirlisí líníochta</string>
+    <string name="category_adjustments">Coigeartuithe íomhá</string>
+    <string name="edit_mode_crop">Barr</string>
+    <string name="edit_mode_rotation">Rothlú</string>
+    <string name="edit_mode_marker">Marcóir</string>
+    <string name="edit_mode_highlighter">Aibhseoir</string>
+    <string name="edit_mode_text">Téacs</string>
+    <string name="edit_mode_brightness">Gile</string>
+    <string name="edit_mode_contrast">Codarsnacht</string>
+    <string name="edit_mode_filters">Scagairí</string>
+    <string name="rotate_counterclockwise">Rothlaigh tuathal</string>
+    <string name="rotate_clockwise">Rothlaigh deiseal</string>
+    <string name="filter_none">Bunleagan</string>
+    <string name="filter_grey">Liath</string>
+    <string name="filter_sepia">Séipia</string>
+    <string name="filter_select_hint">Roghnaigh scagaire chun réamhamharc a fháil</string>
+    <string name="filter_tap_again_to_adjust">Tapáil an scagaire roghnaithe arís chun é a choigeartú</string>
+    <string name="color_white">Bán</string>
+    <string name="color_black">Dubh</string>
+    <string name="color_red">Dearg</string>
+    <string name="color_green">Glas</string>
+    <string name="color_blue">Gorm</string>
+    <string name="color_yellow">Buí</string>
+    <string name="color_cyan">Cian</string>
+    <string name="color_magenta">Maigeanta</string>
+    <string name="enter_text">Cuir isteach téacs…</string>
+    <string name="text_decoration_bold">Cló trom</string>
+    <string name="text_decoration_italic">Cló iodálach</string>
+    <string name="text_decoration_underlined">Faoi líne</string>
+    <string name="text_decoration_strikethrough">Stríoc tríd</string>
+    <string name="text_alignment_left">Ar chlé</string>
+    <string name="text_alignment_center">Ionad</string>
+    <string name="text_alignment_right">Ar dheis</string>
+    <string name="text_color_white">Bán</string>
+    <string name="text_color_black">Dubh</string>
+    <string name="text_color_red">Dearg</string>
+    <string name="text_color_green">Glas</string>
+    <string name="text_color_blue">Gorm</string>
+    <string name="text_color_yellow">Buí</string>
+    <string name="text_color_cyan">Cian</string>
+    <string name="text_color_magenta">Maigeanta</string>
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="close">ياپ</string>
+    <string name="back">قايت</string>
+    <string name="cancel_action">ۋاز كەچ مەشغۇلاتى</string>
+    <string name="confirm_action">جەزملەش مەشغۇلاتى</string>
+    <string name="undo">يېنىۋال</string>
+    <string name="redo">قايتىلا</string>
+    <string name="save">ساقلا</string>
+    <string name="save_as">باشقا ئاتتا ساقلا…</string>
+    <string name="share">ھەمبەھىر</string>
+    <string name="more">تەپسىلاتى…</string>
+    <string name="category_transformation">سۈرەت ئۆزگەرت</string>
+    <string name="category_drawing">سىزمىچىلىق قورالى</string>
+    <string name="category_adjustments">سۈرەت تەڭشەش</string>
+    <string name="edit_mode_crop">كەس</string>
+    <string name="edit_mode_rotation">ئايلاندۇر</string>
+    <string name="edit_mode_marker">بەلگە قەلىمى</string>
+    <string name="edit_mode_highlighter">يورۇتقۇچ</string>
+    <string name="edit_mode_text">تېكىست</string>
+    <string name="edit_mode_brightness">يورۇقلۇق</string>
+    <string name="edit_mode_contrast">سېلىشتۇرمىسى</string>
+    <string name="edit_mode_filters">سۈزگۈچ</string>
+    <string name="rotate_counterclockwise">سولغا ئايلاندۇر</string>
+    <string name="rotate_clockwise">ئوڭغا ئايلاندۇر</string>
+    <string name="filter_none">ئەسلى</string>
+    <string name="filter_grey">كۈلرەڭ</string>
+    <string name="filter_sepia">قوڭۇر</string>
+    <string name="filter_select_hint">ئالدىن كۆزىتىدىغان سۈزگۈچ تاللىنىدۇ</string>
+    <string name="filter_tap_again_to_adjust">تاللانغان سۈزگۈچنى قايتا چېكىپ تەڭشىگىلى بولىدۇ</string>
+    <string name="color_white">ئاق</string>
+    <string name="color_black">قارا</string>
+    <string name="color_red">قىزىل</string>
+    <string name="color_green">يېشىل</string>
+    <string name="color_blue">كۆك</string>
+    <string name="color_yellow">سېرىق</string>
+    <string name="color_cyan">توق يېشىل</string>
+    <string name="color_magenta">ئاچ قىزىل</string>
+    <string name="enter_text">تېكىست كىرگۈزۈش…</string>
+    <string name="text_decoration_bold">توم</string>
+    <string name="text_decoration_italic">يانتۇ</string>
+    <string name="text_decoration_underlined">ئاستى سىزىق</string>
+    <string name="text_decoration_strikethrough">ئۆچۈرۈش سىزىقى</string>
+    <string name="text_alignment_left">سول</string>
+    <string name="text_alignment_center">ئوتتۇرا</string>
+    <string name="text_alignment_right">ئوڭ</string>
+    <string name="text_color_white">ئاق</string>
+    <string name="text_color_black">قارا</string>
+    <string name="text_color_red">قىزىل</string>
+    <string name="text_color_green">يېشىل</string>
+    <string name="text_color_blue">كۆك</string>
+    <string name="text_color_yellow">سېرىق</string>
+    <string name="text_color_cyan">توق يېشىل</string>
+    <string name="text_color_magenta">ئاچ قىزىل</string>
+</resources>

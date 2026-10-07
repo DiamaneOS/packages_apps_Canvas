@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="category_transformation">Umbreyta mynd</string>
+    <string name="category_drawing">Teikniverkfæri</string>
+    <string name="category_adjustments">Aðlögun mynda</string>
+    <string name="edit_mode_marker">Merking</string>
+    <string name="edit_mode_highlighter">Áherslulitun</string>
+    <string name="rotate_counterclockwise">Snúa rangsælis</string>
+    <string name="rotate_clockwise">Snúa réttsælis</string>
+    <string name="filter_select_hint">Veldu síu til að forskoða</string>
+    <string name="filter_tap_again_to_adjust">Ýttu á valda síu til að lagfæra hana</string>
+</resources>

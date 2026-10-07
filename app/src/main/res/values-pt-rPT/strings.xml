@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="close">Fechar</string>
+    <string name="back">Voltar</string>
+    <string name="cancel_action">Ação de cancelar</string>
+    <string name="confirm_action">Ação de confirmar</string>
+    <string name="undo">Desfazer</string>
+    <string name="redo">Repetir</string>
+    <string name="save">Guardar</string>
+    <string name="save_as">Guardar como…</string>
+    <string name="share">Partilhar</string>
+    <string name="more">Mais...</string>
+    <string name="category_transformation">Transformar imagem</string>
+    <string name="category_drawing">Ferramentas de desenho</string>
+    <string name="category_adjustments">Ajustes da imagem</string>
+    <string name="edit_mode_crop">Recortar</string>
+    <string name="edit_mode_rotation">Rotação</string>
+    <string name="edit_mode_marker">Marcador</string>
+    <string name="edit_mode_highlighter">Destacar</string>
+    <string name="edit_mode_text">Texto</string>
+    <string name="edit_mode_brightness">Brilho</string>
+    <string name="edit_mode_contrast">Contraste</string>
+    <string name="edit_mode_filters">Filtros</string>
+    <string name="rotate_counterclockwise">Rodar no sentido anti-horário</string>
+    <string name="rotate_clockwise">Rodar no sentido horário</string>
+    <string name="filter_none">Original</string>
+    <string name="filter_grey">Cinzento</string>
+    <string name="filter_sepia">Sépia</string>
+    <string name="filter_select_hint">Selecione um filtro para pré-visualizar</string>
+    <string name="filter_tap_again_to_adjust">Toque novamente no filtro selecionado para ajustar</string>
+    <string name="color_white">Branco</string>
+    <string name="color_black">Preto</string>
+    <string name="color_red">Vermelho</string>
+    <string name="color_green">Verde</string>
+    <string name="color_blue">Azul</string>
+    <string name="color_yellow">Amarelo</string>
+    <string name="color_cyan">Ciano</string>
+    <string name="color_magenta">Magenta</string>
+    <string name="enter_text">Introduzir texto…</string>
+    <string name="text_decoration_bold">Negrito</string>
+    <string name="text_decoration_italic">Itálico</string>
+    <string name="text_decoration_underlined">Sublinhado</string>
+    <string name="text_decoration_strikethrough">Rasurado</string>
+    <string name="text_alignment_left">Esquerda</string>
+    <string name="text_alignment_center">Centro</string>
+    <string name="text_alignment_right">Direita</string>
+    <string name="text_color_white">Branco</string>
+    <string name="text_color_black">Preto</string>
+    <string name="text_color_red">Vermelho</string>
+    <string name="text_color_green">Verde</string>
+    <string name="text_color_blue">Azul</string>
+    <string name="text_color_yellow">Amarelo</string>
+    <string name="text_color_cyan">Ciano</string>
+    <string name="text_color_magenta">Magenta</string>
+</resources>

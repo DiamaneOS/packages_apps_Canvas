@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="close">Închide</string>
+    <string name="back">Înapoi</string>
+    <string name="cancel_action">Anulează acțiunea</string>
+    <string name="confirm_action">Confirmare acțiune</string>
+    <string name="undo">Anulare</string>
+    <string name="redo">Refă</string>
+    <string name="save">Salvați</string>
+    <string name="save_as">Salvare ca…</string>
+    <string name="share">Distribuiți</string>
+    <string name="more">Mai multe…</string>
+    <string name="category_transformation">Transformare imagine</string>
+    <string name="category_drawing">Instrumente de desenare</string>
+    <string name="category_adjustments">Ajustări imagine</string>
+    <string name="edit_mode_crop">Decupare</string>
+    <string name="edit_mode_rotation">Rotire</string>
+    <string name="edit_mode_marker">Marker</string>
+    <string name="edit_mode_highlighter">Evidențiere</string>
+    <string name="edit_mode_text">Text</string>
+    <string name="edit_mode_brightness">Luminozitate</string>
+    <string name="edit_mode_contrast">Contrast</string>
+    <string name="edit_mode_filters">Filtre</string>
+    <string name="rotate_counterclockwise">Rotire în sens invers acelor de ceasornic</string>
+    <string name="rotate_clockwise">Rotire în sensul acelor de ceasornic</string>
+    <string name="filter_none">Original</string>
+    <string name="filter_grey">Gri</string>
+    <string name="filter_sepia">Sepia</string>
+    <string name="filter_select_hint">Selectaţi un filtru pentru a previzualiza</string>
+    <string name="filter_tap_again_to_adjust">Atinge din nou filtrul selectat pentru a ajusta</string>
+    <string name="color_white">Alb</string>
+    <string name="color_black">Negru</string>
+    <string name="color_red">Roșu</string>
+    <string name="color_green">Verde</string>
+    <string name="color_blue">Albastru</string>
+    <string name="color_yellow">Galben</string>
+    <string name="color_cyan">Cyan</string>
+    <string name="color_magenta">Purpuriu</string>
+    <string name="enter_text">Introduceți textul…</string>
+    <string name="text_decoration_bold">Bold</string>
+    <string name="text_decoration_italic">Cursiv</string>
+    <string name="text_decoration_underlined">Subliniat</string>
+    <string name="text_decoration_strikethrough">Barat</string>
+    <string name="text_alignment_left">Stânga</string>
+    <string name="text_alignment_center">Centrat</string>
+    <string name="text_alignment_right">Dreapta</string>
+    <string name="text_color_white">Alb</string>
+    <string name="text_color_black">Negru</string>
+    <string name="text_color_red">Roșu</string>
+    <string name="text_color_green">Verde</string>
+    <string name="text_color_blue">Albastru</string>
+    <string name="text_color_yellow">Galben</string>
+    <string name="text_color_cyan">Turcoaz</string>
+    <string name="text_color_magenta">Purpuriu</string>
+</resources>

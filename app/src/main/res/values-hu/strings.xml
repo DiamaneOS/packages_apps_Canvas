@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="close">Bezárás</string>
+    <string name="back">Vissza</string>
+    <string name="cancel_action">Művelet megszakítása</string>
+    <string name="confirm_action">Művelet megerősítése</string>
+    <string name="undo">Visszavonás</string>
+    <string name="redo">Újra</string>
+    <string name="save">Mentés</string>
+    <string name="save_as">Mentés másként...</string>
+    <string name="share">Megosztás</string>
+    <string name="more">Továbbiak...</string>
+    <string name="category_transformation">Képátalakítás</string>
+    <string name="category_drawing">Rajzeszközök</string>
+    <string name="category_adjustments">Képbeállítások</string>
+    <string name="edit_mode_crop">Körbevágás</string>
+    <string name="edit_mode_rotation">Elforgatás</string>
+    <string name="edit_mode_marker">Jelölő</string>
+    <string name="edit_mode_highlighter">Kiemelő</string>
+    <string name="edit_mode_text">Szöveg</string>
+    <string name="edit_mode_brightness">Fényerő</string>
+    <string name="edit_mode_contrast">Kontraszt</string>
+    <string name="edit_mode_filters">Szűrők</string>
+    <string name="rotate_counterclockwise">Forgatás az óramutató járásával ellentétes irányba</string>
+    <string name="rotate_clockwise">Forgatás az óramutató járásával megegyező irányba</string>
+    <string name="filter_none">Eredeti</string>
+    <string name="filter_grey">Szürke</string>
+    <string name="filter_sepia">Szépia</string>
+    <string name="filter_select_hint">Válasszon szűrőt az előnézethez</string>
+    <string name="filter_tap_again_to_adjust">A beállításhoz kattintson ismét a kiválasztott szűrőre </string>
+    <string name="color_white">Fehér</string>
+    <string name="color_black">Fekete</string>
+    <string name="color_red">Vörös</string>
+    <string name="color_green">Zöld</string>
+    <string name="color_blue">Kék</string>
+    <string name="color_yellow">Sárga</string>
+    <string name="color_cyan">Cián</string>
+    <string name="color_magenta">Bíbor</string>
+    <string name="enter_text">Írjon be valamit...</string>
+    <string name="text_decoration_bold">Félkövér</string>
+    <string name="text_decoration_italic">Dőlt</string>
+    <string name="text_decoration_underlined">Aláhúzott</string>
+    <string name="text_decoration_strikethrough">Áthúzott</string>
+    <string name="text_alignment_left">Balra</string>
+    <string name="text_alignment_center">Középre</string>
+    <string name="text_alignment_right">Jobbra</string>
+    <string name="text_color_white">Fehér</string>
+    <string name="text_color_black">Fekete</string>
+    <string name="text_color_red">Vörös</string>
+    <string name="text_color_green">Zöld</string>
+    <string name="text_color_blue">Kék</string>
+    <string name="text_color_yellow">Sárga</string>
+    <string name="text_color_cyan">Cián</string>
+    <string name="text_color_magenta">Bíbor</string>
+</resources>
