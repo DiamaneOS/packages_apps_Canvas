@@ -8,6 +8,7 @@ package org.lineageos.canvas.viewmodels
 import android.app.Application
 import android.content.ContentResolver
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.core.content.FileProvider
@@ -25,6 +26,7 @@ import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.lineageos.canvas.R
 import org.lineageos.canvas.models.EditStatus
 import org.lineageos.canvas.models.ImageFormat
 import org.lineageos.canvas.models.Image
@@ -147,7 +149,16 @@ class ResultOpsViewModel(application: Application) : AndroidViewModel(applicatio
                     )
                     image.uri
                 }.fold(
-                    onSuccess = { deleteStatus(it) },
+                    onSuccess = { uri ->
+                        // SystemUI shows no clipboard preview for this copy, so say it here,
+                        // whether or not the delete that follows goes through.
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                getApplication<Application>(), R.string.screenshot_copied, Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        deleteStatus(uri)
+                    },
                     onFailure = { EditStatus.CopyFailed },
                 )
             }
