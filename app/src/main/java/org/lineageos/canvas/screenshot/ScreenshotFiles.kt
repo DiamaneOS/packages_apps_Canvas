@@ -13,6 +13,7 @@ import android.content.Intent
 import android.content.IntentSender
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.PersistableBundle
 import android.provider.MediaStore
 import android.util.Log
 import androidx.core.content.FileProvider
@@ -31,6 +32,12 @@ object ScreenshotFiles {
 
     /** Canvas's private folder for clipboard copies; the only folder the "clipboard" path shares. */
     private const val CLIPBOARD_DIR = "clipboard"
+
+    /**
+     * Asks DiamaneOS SystemUI not to show its clipboard preview for this clip; Canvas shows a
+     * "Copied" toast instead. SystemUI honours it only from the system Canvas package.
+     */
+    private const val EXTRA_QUIET_COPY = "de.diamaneos.clipboard.extra.QUIET_COPY"
 
     /** Intent-level check, without I/O. */
     fun isScreenshotRequest(intent: Intent, uri: Uri) = ScreenshotRules.isScreenshotRequest(
@@ -88,7 +95,8 @@ object ScreenshotFiles {
      * Puts the image on the clipboard: the edited [bitmap] if there is one, else the original
      * bytes. Canvas keeps one copy: earlier copies are removed first, and each copy gets a new
      * name, so a reader granted an older copy cannot read this one. The clipboard grants readers
-     * read access to this one file URI only. Blocking.
+     * read access to this one file URI only. Used by Copy and delete only: the clip is marked so
+     * SystemUI shows no clipboard preview of the screenshot that is being deleted. Blocking.
      */
     fun copyToClipboard(
         context: Context,
@@ -126,6 +134,9 @@ object ScreenshotFiles {
 
         val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
         val clip = ClipData.newUri(context.contentResolver, label, uri)
+        clip.description.extras = PersistableBundle().apply {
+            putBoolean(EXTRA_QUIET_COPY, true)
+        }
         context.getSystemService(ClipboardManager::class.java).setPrimaryClip(clip)
     }
 
