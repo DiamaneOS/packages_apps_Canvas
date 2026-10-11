@@ -8,6 +8,7 @@ package org.lineageos.canvas.viewmodels
 import android.app.Application
 import android.content.ContentResolver
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.core.content.FileProvider
@@ -25,9 +26,11 @@ import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.lineageos.canvas.R
 import org.lineageos.canvas.models.EditStatus
 import org.lineageos.canvas.models.ImageFormat
 import org.lineageos.canvas.models.Image
+import org.lineageos.canvas.screenshot.ScreenshotFiles
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -47,6 +50,12 @@ class ResultOpsViewModel(application: Application) : AndroidViewModel(applicatio
      */
     private val _uri = MutableStateFlow<Uri?>(null)
     val uri = _uri.asStateFlow()
+
+    /**
+     * Whether the image is a screenshot opened by SystemUI's Edit, which gets the Done choices.
+     */
+    private val _isScreenshot = MutableStateFlow(false)
+    val isScreenshot = _isScreenshot.asStateFlow()
 
     /**
      * The status of the save operation.
@@ -82,9 +91,105 @@ class ResultOpsViewModel(application: Application) : AndroidViewModel(applicatio
      * Set the URI of the image.
      *
      * @param uri the URI of the image
+     * @param isScreenshotRequest whether the request looks like SystemUI's screenshot Edit. The
+     *   image's folder is then checked before Done is offered
      */
-    fun setUri(uri: Uri) {
+    fun setUri(uri: Uri, isScreenshotRequest: Boolean = false) {
+        if (_uri.value != uri || !isScreenshotRequest) {
+            _isScreenshot.value = false
+        }
         _uri.value = uri
+
+        if (isScreenshotRequest) {
+            viewModelScope.launch {
+                val isScreenshot = withContext(Dispatchers.IO) {
+                    ScreenshotFiles.isInScreenshotsFolder(contentResolver, uri)
+                }
+                if (_uri.value == uri) {
+                    _isScreenshot.value = isScreenshot
+                }
+            }
+        }
+    }
+
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            ScreenshotFiles.pruneStaleClipboardFiles(getApplication<Application>())
+        }
+    }
+
+    /**
+     * Delete the screenshot with the access SystemUI granted.
+     */
+    fun deleteScreenshot() {
+        val uri = _uri.value ?: return
+
+        viewModelScope.launch {
+            _editStatus.value = EditStatus.Deleting
+            _editStatus.value = withContext(Dispatchers.IO) { deleteStatus(uri) }
+        }
+    }
+
+    /**
+     * Copy the edited image, or the original if [bitmap] is null, to the clipboard, then delete
+     * the screenshot. If the copy fails, nothing is deleted.
+     */
+    fun copyAndDeleteScreenshot(bitmap: ImageBitmap?, label: CharSequence) {
+        viewModelScope.launch {
+            _editStatus.value = EditStatus.Deleting
+            _editStatus.value = withContext(Dispatchers.IO) {
+                runCatching {
+                    val image = image.filterNotNull().first()
+                    ScreenshotFiles.copyToClipboard(
+                        getApplication<Application>(),
+                        image.uri,
+                        image.format,
+                        bitmap?.asAndroidBitmap(),
+                        label,
+                    )
+                    image.uri
+                }.fold(
+                    onSuccess = { uri ->
+                        // SystemUI shows no clipboard preview for this copy, so say it here,
+                        // whether or not the delete that follows goes through.
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                getApplication<Application>(), R.string.screenshot_copied, Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        deleteStatus(uri)
+                    },
+                    onFailure = { EditStatus.CopyFailed },
+                )
+            }
+        }
+    }
+
+    /**
+     * The system's delete confirmation is showing. Don't show it again for the same request.
+     */
+    fun onDeleteConfirmationShown() {
+        _editStatus.value = EditStatus.Deleting
+    }
+
+    /**
+     * The system's delete confirmation ended. [deleted] tells whether the user allowed it.
+     */
+    fun onDeleteConfirmationResult(deleted: Boolean) {
+        _editStatus.value = when (deleted) {
+            true -> EditStatus.Deleted
+            false -> EditStatus.Idle
+        }
+    }
+
+    private fun deleteStatus(uri: Uri) = when (
+        val result = ScreenshotFiles.delete(contentResolver, uri)
+    ) {
+        is ScreenshotFiles.DeleteResult.Deleted -> EditStatus.Deleted
+        is ScreenshotFiles.DeleteResult.NeedsConfirmation ->
+            EditStatus.DeleteNeedsConfirmation(result.intentSender)
+
+        is ScreenshotFiles.DeleteResult.Failed -> EditStatus.DeleteFailed
     }
 
     fun saveImage(bitmap: ImageBitmap) {

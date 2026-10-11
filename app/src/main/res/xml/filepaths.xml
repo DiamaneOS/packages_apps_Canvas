@@ -5,4 +5,6 @@
 -->
 <paths>
     <files-path path="images/" name="edits" />
+    <!-- DiamaneOS: the one screenshot copy on the clipboard (Copy and delete) -->
+    <files-path path="clipboard/" name="clipboard" />
 </paths>

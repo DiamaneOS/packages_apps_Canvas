@@ -44,6 +44,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import org.lineageos.canvas.R
+import org.lineageos.canvas.ui.ScreenshotActions
 import org.lineageos.canvas.ui.navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
@@ -59,6 +60,8 @@ fun CanvasTopAppBar(
     hasHistory: Boolean,
     onShowHistory: () -> Unit,
     modifier: Modifier = Modifier,
+    screenshotActions: ScreenshotActions? = null,
+    hasEdits: Boolean = false,
 ) {
     TopAppBar(
         title = {
@@ -100,7 +103,14 @@ fun CanvasTopAppBar(
                         }
                     }
 
-                    Box {
+                    if (screenshotActions != null) {
+                        ScreenshotDoneButton(
+                            screenshotActions = screenshotActions,
+                            hasEdits = hasEdits,
+                            onShare = onShare,
+                            onSaveAs = onSaveAs,
+                        )
+                    } else Box {
                         var checked by remember { mutableStateOf(false) }
 
                         SplitButtonLayout(

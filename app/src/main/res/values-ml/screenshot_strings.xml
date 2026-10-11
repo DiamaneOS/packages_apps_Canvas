@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The Android Open Source Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Android's own translations, copied unchanged. Generated: do not edit by hand. -->
+<resources>
+    <string name="screenshot_done">"പൂർത്തിയായി"</string>
+    <string name="screenshot_delete">"ഇല്ലാതാക്കുക"</string>
+    <string name="screenshot_clip_label">"സ്ക്രീൻഷോട്ട്"</string>
+    <string name="screenshot_copied">"പകർത്തി"</string>
+</resources>

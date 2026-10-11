@@ -5,6 +5,7 @@
 
 package org.lineageos.canvas.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -22,8 +23,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import org.lineageos.canvas.models.EditMode
+import org.lineageos.canvas.screenshot.ScreenshotRules
 import org.lineageos.canvas.ui.composables.CanvasTopAppBar
 import org.lineageos.canvas.ui.composables.HistorySheet
+import org.lineageos.canvas.ui.composables.KeepEditsDialog
 import org.lineageos.canvas.ui.navigation.CanvasNavDisplay
 import org.lineageos.canvas.ui.navigation.Screen
 import org.lineageos.canvas.viewmodels.EditViewModel
@@ -36,6 +39,7 @@ fun CanvasApp(
     onSave: () -> Unit,
     onSaveAs: () -> Unit,
     onShare: () -> Unit,
+    screenshotActions: ScreenshotActions? = null,
 ) {
     val isWritable by editViewModel.isWritable.collectAsState()
 
@@ -54,6 +58,43 @@ fun CanvasApp(
 
     val navigationBackStack = remember { mutableStateListOf<Screen>(Screen.Home) }
 
+    // Screenshot from SystemUI's Edit: closing with edits asks what to do with them
+    val hasEdits = canUndo
+    var showKeepEditsDialog by remember { mutableStateOf(false) }
+    val onCloseRequested: () -> Unit = {
+        when (ScreenshotRules.onClose(screenshotActions != null, hasEdits)) {
+            ScreenshotRules.Close.ASK -> {
+                showKeepEditsDialog = true
+            }
+
+            ScreenshotRules.Close.LEAVE -> onClose()
+        }
+    }
+
+    BackHandler(
+        enabled = screenshotActions != null && hasEdits &&
+                navigationBackStack.size == 1 && currentCategory == null,
+        onBack = onCloseRequested,
+    )
+
+    if (showKeepEditsDialog && screenshotActions != null) {
+        KeepEditsDialog(
+            onSave = {
+                showKeepEditsDialog = false
+                screenshotActions.onSave(hasEdits)
+            },
+            onDiscard = {
+                showKeepEditsDialog = false
+                screenshotActions.onDiscard()
+            },
+            onDelete = {
+                showKeepEditsDialog = false
+                screenshotActions.onDelete()
+            },
+            onDismiss = { showKeepEditsDialog = false },
+        )
+    }
+
     SharedTransitionScope { modifier ->
         CompositionLocalProvider(LocalSharedTransitionScope provides this) {
             Scaffold(
@@ -61,7 +102,7 @@ fun CanvasApp(
                 topBar = {
                     CanvasTopAppBar(
                         canClose = navigationBackStack.size == 1,
-                        onClose = onClose,
+                        onClose = onCloseRequested,
                         currentScreen = navigationBackStack.last(),
                         isWritable = isWritable,
                         onSave = onSave,
@@ -69,6 +110,8 @@ fun CanvasApp(
                         onShare = onShare,
                         hasHistory = history.allElements.isNotEmpty(),
                         onShowHistory = { showHistory = true },
+                        screenshotActions = screenshotActions,
+                        hasEdits = hasEdits,
                     )
                 },
             ) { innerPadding ->
