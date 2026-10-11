@@ -74,3 +74,16 @@ android_app {
         shrink_resources: true,
     },
 }
+
+// DiamaneOS: host tests of the screenshot Edit rules (no Android classes)
+java_test_host {
+    name: "CanvasScreenshotRulesTests",
+    srcs: [
+        "src/main/java/org/lineageos/canvas/screenshot/ScreenshotRules.kt",
+        "src/test/java/**/*.kt",
+    ],
+    static_libs: ["junit"],
+    test_options: {
+        unit_test: true,
+    },
+}
