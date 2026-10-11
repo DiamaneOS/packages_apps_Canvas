@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The Android Open Source Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Android's own translations, copied unchanged. Generated; do not edit by hand. -->
+<resources>
+    <string name="screenshot_done">"Eginda"</string>
+    <string name="screenshot_delete">"Ezabatu"</string>
+    <string name="screenshot_clip_label">"Pantaila-argazkia"</string>
+    <string name="screenshot_copied">"Kopiatu da"</string>
+</resources>

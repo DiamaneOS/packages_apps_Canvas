@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The Android Open Source Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Android's own translations, copied unchanged. Generated; do not edit by hand. -->
+<resources>
+    <string name="screenshot_done">"Hotovo"</string>
+    <string name="screenshot_delete">"Odstrániť"</string>
+    <string name="screenshot_clip_label">"Snímka obrazovky"</string>
+    <string name="screenshot_copied">"Skopírované"</string>
+</resources>
