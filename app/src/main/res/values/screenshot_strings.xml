@@ -4,7 +4,7 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <!-- Screenshots opened by SystemUI's Edit (DiamaneOS). Done, Delete, Screenshot and Copied are
-     translated; the rest is English only. -->
+     translated. The rest is English only. -->
 <resources>
     <string name="screenshot_done">Done</string>
     <string name="screenshot_copy_and_delete">Copy and delete</string>

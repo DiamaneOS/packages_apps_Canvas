@@ -7,7 +7,7 @@ package org.lineageos.canvas.ui
 
 /**
  * What Done offers for a screenshot opened by SystemUI's Edit. [hasEdits] tells whether there
- * are active edits; without them Save leaves the file untouched and the copy is the original.
+ * are active edits. Without them Save leaves the file untouched and the copy is the original.
  */
 class ScreenshotActions(
     val onSave: (hasEdits: Boolean) -> Unit,

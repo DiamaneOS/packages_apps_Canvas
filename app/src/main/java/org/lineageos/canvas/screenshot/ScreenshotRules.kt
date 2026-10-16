@@ -14,7 +14,7 @@ object ScreenshotRules {
     const val EXTRA_EDIT_SOURCE = "edit_source"
     const val EDIT_SOURCE_SCREENSHOT = "screenshot"
 
-    /** MediaStore's authority; SystemUI removes the user id before handing the URI over. */
+    /** MediaStore's authority. SystemUI removes the user id before handing the URI over. */
     const val MEDIA_STORE_AUTHORITY = "media"
 
     /** Where SystemUI saves screenshots: Environment.DIRECTORY_PICTURES/DIRECTORY_SCREENSHOTS. */
@@ -47,7 +47,7 @@ object ScreenshotRules {
 
     /** What closing the editor does. */
     enum class Close {
-        /** Leave; the screenshot stays as it is. */
+        /** Leave. The screenshot stays as it is. */
         LEAVE,
 
         /** Ask whether to save the edits, discard them or delete the screenshot. */

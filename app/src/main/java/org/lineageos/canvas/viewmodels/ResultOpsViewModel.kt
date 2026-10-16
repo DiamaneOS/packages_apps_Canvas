@@ -91,7 +91,7 @@ class ResultOpsViewModel(application: Application) : AndroidViewModel(applicatio
      * Set the URI of the image.
      *
      * @param uri the URI of the image
-     * @param isScreenshotRequest whether the request looks like SystemUI's screenshot Edit; the
+     * @param isScreenshotRequest whether the request looks like SystemUI's screenshot Edit. The
      *   image's folder is then checked before Done is offered
      */
     fun setUri(uri: Uri, isScreenshotRequest: Boolean = false) {
@@ -166,14 +166,14 @@ class ResultOpsViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     /**
-     * The system's delete confirmation is showing; don't show it again for the same request.
+     * The system's delete confirmation is showing. Don't show it again for the same request.
      */
     fun onDeleteConfirmationShown() {
         _editStatus.value = EditStatus.Deleting
     }
 
     /**
-     * The system's delete confirmation ended; [deleted] tells whether the user allowed it.
+     * The system's delete confirmation ended. [deleted] tells whether the user allowed it.
      */
     fun onDeleteConfirmationResult(deleted: Boolean) {
         _editStatus.value = when (deleted) {

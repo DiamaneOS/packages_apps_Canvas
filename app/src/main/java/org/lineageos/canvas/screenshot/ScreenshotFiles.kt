@@ -25,16 +25,16 @@ import java.util.UUID
 
 /**
  * The screenshot Edit flow's file work: detection, deletion and the clipboard copy. Uses only the
- * access SystemUI granted for the one screenshot URI and Canvas's own files; no permissions.
+ * access SystemUI granted for the one screenshot URI and Canvas's own files. No permissions.
  */
 object ScreenshotFiles {
     private const val TAG = "CanvasScreenshot"
 
-    /** Canvas's private folder for clipboard copies; the only folder the "clipboard" path shares. */
+    /** Canvas's private folder for clipboard copies. The only folder the "clipboard" path shares. */
     private const val CLIPBOARD_DIR = "clipboard"
 
     /**
-     * Asks DiamaneOS SystemUI not to show its clipboard preview for this clip; Canvas shows a
+     * Asks DiamaneOS SystemUI not to show its clipboard preview for this clip. Canvas shows a
      * "Copied" toast instead. SystemUI honours it only from the system Canvas package.
      */
     private const val EXTRA_QUIET_COPY = "de.diamaneos.clipboard.extra.QUIET_COPY"
